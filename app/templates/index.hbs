@@ -1,0 +1,38 @@
+{{page-title 'Index'}}
+<div style='border:1px solid; padding: 1rem; margin:0.25rem'>
+  <div>URL param "query" value: {{if this.query this.query 'undefined'}}</div>
+  <div>URL param "queryRefreshModel" value:
+    {{if this.queryRefreshModel this.queryRefreshModel 'undefined'}}</div>
+  <div style='border:1px solid; padding: 1rem; margin:0.25rem'>
+    <div>Navigate between links</div>
+    <div>
+      <LinkTo
+        @route='index'
+        @query={{hash query=(faker '{{name.lastName}}')}}
+      >Random "Query" Param</LinkTo>
+    </div>
+    <div>
+      <LinkTo
+        @route='index'
+        @query={{hash query=(faker '{{name.lastName}}')}}
+      >Random Query Param</LinkTo>
+    </div>
+    <div>
+      <button type="button" {{on 'click' this.transitionTo}}>Random "query" Param</button>
+    </div>
+    <div>
+      <button type="button" {{on 'click' this.refreshResultsByModel}}>Random
+        "queryRefreshModel" Param</button>
+    </div>
+  </div>
+  <div>
+    <b>Search resuls from Route</b>
+    {{#each this.model.searchResults as |result|}}
+      <div>{{result.title}}</div>
+    {{/each}}
+    <b>Search resuls from Controller</b>
+    {{#each this.searchResults.value.results as |result|}}
+      <div>{{result.title}}</div>
+    {{/each}}
+  </div>
+</div>

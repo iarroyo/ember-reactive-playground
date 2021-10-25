@@ -1,0 +1,12 @@
+<div>
+  {{#if @resource.isRunning}}
+    <div>Loading...</div>
+  {{else}}
+    {{#each @resource.value.results as |result|}}
+      <div
+        class='hover:bg-yellow-200'
+        {{on 'click' (fn @selectResult result)}}
+      >{{result.name}}</div>
+    {{/each}}
+  {{/if}}
+</div>

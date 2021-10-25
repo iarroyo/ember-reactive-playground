@@ -1,0 +1,31 @@
+<header class='mb-4'>
+  <div class='max-w-7xl mx-auto pl-4 pt-2 flex justify-end'>
+    <div class='flex items-center'>
+      <nav class='inline-flex'>
+        <ul class='flex p-2'>
+          <li>
+            <LinkTo
+              class='p-4 hover:bg-green-200'
+              @route='index'
+              title='Index'
+            >Index</LinkTo>
+          </li>
+          <li>
+            <LinkTo
+              class='p-4 hover:bg-green-200'
+              @route='refresh-by-model'
+              title='Refresh by model'
+            >Refresh by model</LinkTo>
+          </li>
+          <li>
+            <LinkTo
+              class='p-4 hover:bg-green-200'
+              @route='refresh-by-resource'
+              title='Refresh by resource'
+            >Refresh by resource</LinkTo>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,13 @@
+{{page-title 'RefreshByResource'}}
+<div>Display user detail - it uses resource/autotracking</div>
+<div class='flex'>
+  <div class='w-52'>
+    <DisplayResults
+      @resource={{this.model.getAllUsersTask}}
+      @selectResult={{this.selectUserByName}}
+    />
+  </div>
+  <div class='w-52'>
+    <UserDetail @resource={{this.getUser}} />
+  </div>
+</div>

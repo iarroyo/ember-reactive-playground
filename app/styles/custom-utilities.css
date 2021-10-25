@@ -1,0 +1,4 @@
+/* app/styles/custom-utilities.css */
+.active {
+  @apply bg-green-200;
+}
