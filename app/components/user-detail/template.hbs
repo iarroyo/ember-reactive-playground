@@ -1,0 +1,17 @@
+<div>User detail</div>
+{{#if @resource.isRunning}}
+  <div>Loading...</div>
+{{else}}
+  {{#if (not (is-none @resource.value))}}
+    {{#let @resource.value as |user|}}
+      {{#if (is-empty user)}}
+        <div>Select User</div>
+      {{else}}
+        <div>{{user.id}}</div>
+        <div>{{user.name}}</div>
+      {{/if}}
+    {{/let}}
+  {{else}}
+    <div>User not found</div>
+  {{/if}}
+{{/if}}

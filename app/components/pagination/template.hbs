@@ -3,14 +3,14 @@
 >
   <div class='flex-1 flex justify-between sm:hidden'>
     <a
-      {{on 'click' this.decrement}}
+      {{on 'click' @decrement}}
       href='#'
       class='relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50'
     >
       Previous
     </a>
     <a
-      {{on 'click' this.increment}}
+      {{on 'click' @increment}}
       href='#'
       class='ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50'
     >
@@ -24,7 +24,7 @@
         aria-label='Pagination'
       >
         <a
-          {{on 'click' this.decrement}}
+          {{on 'click' @decrement}}
           href='#'
           class='relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50'
         >
@@ -45,15 +45,15 @@
           </svg>
         </a>
 
-        {{#each this.pages as |page index|}}
+        {{#each @pages as |page index|}}
           {{#if (eq page '...')}}
             <span
               class='bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium'
             >...</span>
           {{else}}
-            {{#let (eq (add index 1) @selectedPage) as |isSelectedPage|}}
+            {{#let (eq (add index 1) @currentPage) as |isSelectedPage|}}
               <a
-                {{on 'click' (fn this.change page)}}
+                {{on 'click' (fn @change page)}}
                 href='#'
                 aria-current={{if isSelectedPage 'page' 'false'}}
                 class='{{if
@@ -70,7 +70,7 @@
         {{/each}}
 
         <a
-          {{on 'click' this.increment}}
+          {{on 'click' @increment}}
           href='#'
           class='relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50'
         >

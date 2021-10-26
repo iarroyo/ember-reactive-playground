@@ -1,14 +1,25 @@
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { cached } from '@glimmer/tracking';
 
-export default class PaginationComponent extends Component {
-  @tracked
-  currentPage = this.args.selectedPage || 1;
+export default class PaginationContainer extends Component {
+  @service
+  search;
 
   @service
   router;
+
+  get currentPage() {
+    return parseInt(this.search.searchContext.page || 1);
+  }
+
+  @cached
+  get numberOfPages() {
+    return (
+      (this.args.size || 0) / (this.search.searchContext.itemsPerPage || 0)
+    );
+  }
 
   get pages() {
     let pages;
@@ -16,20 +27,20 @@ export default class PaginationComponent extends Component {
     let LEFT_ITEMS_PAGINATION = 5;
     let RIGHT_ITEMS_PAGINATION = 5;
 
-    if (this.args.numberOfPages < BASIC_PAGINATION_PAGES) {
+    if (this.numberOfPages < BASIC_PAGINATION_PAGES) {
       let i = 1;
-      pages = Array.from(Array(this.args.numberOfPages), () => i++);
+      pages = Array.from(Array(this.numberOfPages), () => i++);
     } else {
       if (this.currentPage <= LEFT_ITEMS_PAGINATION) {
         const firstPages = Array.from(
           Array(LEFT_ITEMS_PAGINATION),
           (_, index) => index + 1
         );
-        pages = [...firstPages, '...', this.args.numberOfPages];
-      } else if (this.currentPage > this.args.numberOfPages - 5) {
+        pages = [...firstPages, '...', this.numberOfPages];
+      } else if (this.currentPage > this.numberOfPages - 5) {
         pages = [1, '...'];
-        let i = this.args.numberOfPages - RIGHT_ITEMS_PAGINATION;
-        while (i < this.args.numberOfPages) {
+        let i = this.numberOfPages - RIGHT_ITEMS_PAGINATION;
+        while (i < this.numberOfPages) {
           pages.push(++i);
         }
       } else {
@@ -40,7 +51,7 @@ export default class PaginationComponent extends Component {
           this.currentPage,
           this.currentPage + 1,
           '...',
-          this.args.numberOfPages,
+          this.numberOfPages,
         ];
       }
     }
@@ -49,7 +60,7 @@ export default class PaginationComponent extends Component {
   }
 
   transitionToPage(pageNumber) {
-    this.router.transitionTo(this.routeName, {
+    this.router.transitionTo({
       queryParams: { page: pageNumber },
     });
   }
@@ -57,23 +68,18 @@ export default class PaginationComponent extends Component {
   @action
   change(value, event) {
     event.preventDefault();
-    this.currentPage = value;
-    this.transitionToPage(this.currentPage);
+    this.transitionToPage(value);
   }
 
   @action
   increment(event) {
     event.preventDefault();
-    if (this.lastPageSelected) return;
-    this.currentPage = this.currentPage + 1;
-    this.transitionToPage(this.currentPage);
+    this.transitionToPage(this.currentPage + 1);
   }
 
   @action
   decrement(event) {
     event.preventDefault();
-    if (this.firstPageSelected) return;
-    this.currentPage = this.currentPage - 1;
-    this.transitionToPage(this.currentPage);
+    this.transitionToPage(this.currentPage - 1);
   }
 }

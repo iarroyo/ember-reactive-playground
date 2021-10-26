@@ -1,13 +1,36 @@
 {{page-title 'RefreshByResource'}}
-<div>Display user detail - it uses resource/autotracking</div>
-<div class='flex'>
-  <div class='w-52'>
-    <DisplayResults
-      @resource={{this.model.getAllUsersTask}}
-      @selectResult={{this.selectUserByName}}
-    />
+<div class='flex justify-center flex-col'>
+  <div class='flex justify-center p-5'>
+    <b>Display user detail - it uses resource/autotracking</b>
   </div>
-  <div class='w-52'>
-    <UserDetail @resource={{this.getUser}} />
+  <div class='flex justify-center'>
+    <div class='w-52'>
+      <DisplayResults::Container as |displayResultsData|>
+        <DisplayResults
+          @resource={{displayResultsData.resource}}
+          @selectResult={{displayResultsData.selectResult}}
+        />
+        {{#if displayResultsData.resource.value}}
+          <Pagination::Container
+            @size={{displayResultsData.resource.value.total}}
+            as |paginationData|
+          >
+            <Pagination
+              @pages={{paginationData.pages}}
+              @currentPage={{paginationData.currentPage}}
+              @selectedPage={{paginationData.selectedPage}}
+              @increment={{paginationData.increment}}
+              @decrement={{paginationData.decrement}}
+              @change={{paginationData.change}}
+            />
+          </Pagination::Container>
+        {{/if}}
+      </DisplayResults::Container>
+    </div>
+    <div class='w-52'>
+      <UserDetail::Container as |userData|>
+        <UserDetail @resource={{userData.resource}} />
+      </UserDetail::Container>
+    </div>
   </div>
 </div>
