@@ -19,9 +19,7 @@ export default class IndexRoute extends Route {
     }
   }
 
-  model(params) {
-    console.log('Modal params');
-    console.log(params);
+  model() {
     const searchResults = [];
     for (let i = 0; i < 10; i++) {
       searchResults.push({

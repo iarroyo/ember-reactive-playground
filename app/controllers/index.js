@@ -38,8 +38,6 @@ export default class IndexController extends Controller {
       let searchResults = [];
 
       if (state?.results && state?.query === query) {
-        console.log(state.query);
-        console.log(query);
         searchResults = state.results;
       } else {
         if (query) {

@@ -12,6 +12,7 @@ export default class UserDetailContainer extends Component {
 
   @task
   *getUser(userName) {
+    console.log('getUser');
     let data = [];
 
     if (userName) {

@@ -1,13 +1,13 @@
-import { tracked } from '@glimmer/tracking';
+import { dedupeTracked } from 'tracked-toolbox';
 
 export default class SearchContext {
-  @tracked
+  @dedupeTracked
   user;
 
-  @tracked
+  @dedupeTracked
   page;
 
-  @tracked
+  @dedupeTracked
   itemsPerPage;
 
   update(context) {

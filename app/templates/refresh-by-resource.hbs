@@ -6,10 +6,12 @@
   <div class='flex justify-center'>
     <div class='w-52'>
       <DisplayResults::Container as |displayResultsData|>
-        <DisplayResults
-          @resource={{displayResultsData.resource}}
-          @selectResult={{displayResultsData.selectResult}}
-        />
+        <div class='h-168'>
+          <DisplayResults
+            @resource={{displayResultsData.resource}}
+            @selectResult={{displayResultsData.selectResult}}
+          />
+        </div>
         {{#if displayResultsData.resource.value}}
           <Pagination::Container
             @size={{displayResultsData.resource.value.total}}
