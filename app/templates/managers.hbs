@@ -1,0 +1,11 @@
+{{page-title 'Managers'}}
+
+{{! Playing with custm component manager }}
+<ComponentManager::Sample as |value onIncrement|>
+  <div>
+    <div>
+      <button type='button' {{on 'click' onIncrement}}>Increment</button>
+    </div>
+    <lable>Value:</lable><span>{{value}}</span>
+  </div>
+</ComponentManager::Sample>

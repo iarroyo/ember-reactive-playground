@@ -9,4 +9,5 @@ export default class Router extends EmberRouter {
 Router.map(function () {
   this.route('refresh-by-model');
   this.route('refresh-by-resource');
+  this.route('managers');
 });
