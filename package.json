@@ -31,7 +31,7 @@
     "autoprefixer": "^10.3.7",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
-    "ember-auto-import": "^1.11.3",
+    "ember-auto-import": "^2.2.4",
     "ember-cached-decorator-polyfill": "^0.1.4",
     "ember-cli": "~3.28.3",
     "ember-cli-app-version": "^5.0.0",
@@ -43,10 +43,12 @@
     "ember-cli-postcss": "^7.0.2",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-terser": "^4.0.2",
+    "ember-click-outside-modifier": "^2.0.1",
     "ember-concurrency": "^2.1.2",
     "ember-data": "~3.28.0",
     "ember-export-application-global": "^2.0.1",
     "ember-fetch": "^8.1.1",
+    "ember-function-component": "^1.0.9",
     "ember-load-initializers": "^2.1.2",
     "ember-math-helpers": "^2.17.3",
     "ember-maybe-import-regenerator": "^0.1.6",
@@ -71,7 +73,8 @@
     "qunit": "^2.16.0",
     "qunit-dom": "^1.6.0",
     "tailwindcss": "^2.2.17",
-    "tracked-toolbox": "^1.2.3"
+    "tracked-toolbox": "^1.2.3",
+    "webpack": "^5.64.2"
   },
   "engines": {
     "node": "12.* || 14.* || >= 16"
