@@ -1,11 +1,9 @@
 import { useState, useCallback } from 'ember-function-component';
 export default function useToggle() {
   let [value, setValue] = useState(false);
-  const date = new Date();
-  value = !value;
-  const toggle = useCallback(
-    () => console.log(value) || console.log(date) || setValue(value)
-  );
-
+  const toggle = useCallback(() => {
+    value = !value;
+    setValue(value);
+  });
   return { value, toggle };
 }

@@ -1,14 +1,14 @@
 import { getOwner, setOwner } from '@ember/application';
 import { capabilities } from '@ember/component';
 
-export default class CustomComponentManager {
+export default class SampleComponentManager {
   capabilities = capabilities('3.13', {
     destructor: true,
     updateHook: true,
   });
 
   static create(owner) {
-    let manager = new CustomComponentManager();
+    let manager = new SampleComponentManager();
     setOwner(manager, owner);
 
     return manager;
