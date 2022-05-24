@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { useFunction } from 'ember-resources';
+import { trackedFunction } from 'ember-resources/util/function';
 import faker from 'faker';
 
 export default class IndexController extends Controller {
@@ -31,7 +31,7 @@ export default class IndexController extends Controller {
     });
   }
 
-  searchResults = useFunction(
+  searchResults = trackedFunction(
     this,
     async (state, ...args) => {
       const [query] = args;

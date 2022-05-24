@@ -1,5 +1,5 @@
 import Component from '@glimmer/component';
-import { useTask } from 'ember-resources';
+import { trackedTask } from 'ember-resources/util/ember-concurrency';
 import { task } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 
@@ -34,5 +34,7 @@ export default class UserDetailContainer extends Component {
     return data;
   }
 
-  getUser = useTask(this, this.getUser, () => [this.search.searchContext.user]);
+  getUser = trackedTask(this, this.getUser, () => [
+    this.search.searchContext.user,
+  ]);
 }

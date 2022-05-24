@@ -11,4 +11,5 @@ Router.map(function () {
   this.route('refresh-by-resource');
   this.route('managers');
   this.route('click-outside');
+  this.route('math');
 });

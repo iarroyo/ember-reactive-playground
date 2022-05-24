@@ -1,8 +1,7 @@
 import Component from '@glimmer/component';
 import { task } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
-import { tracked } from '@glimmer/tracking';
-import { useTask } from 'ember-resources';
+import { trackedTask } from 'ember-resources/util/ember-concurrency';
 
 export default class DisplayResultsContainer extends Component {
   @service('api/http-client')
@@ -41,7 +40,7 @@ export default class DisplayResultsContainer extends Component {
     return data;
   }
 
-  getAllUsers = useTask(this, this.getAllUsers, () => [
+  getAllUsers = trackedTask(this, this.getAllUsers, () => [
     this.search.searchContext.page,
   ]);
 }
